@@ -1,15 +1,24 @@
-import { AfterLoginLayout } from "@/layouts/afterLoginLayout";
+import { LayoutWrapper } from "@/layouts/LayoutWrapper";
 import { HomePage } from "@/pages/HomePage";
+import { SignInPage } from "@/pages/SignInPage";
 import { createBrowserRouter } from "react-router-dom";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export const routes = createBrowserRouter([
   {
-    path: "/",
-    element: <AfterLoginLayout />,
+    element: <LayoutWrapper />,
     children: [
       {
+        path: "/sign-in",
+        element: <SignInPage />,
+      },
+      {
+        path: "/",
+        element: <ProtectedRoute element={<HomePage />} />,
+      },
+      {
         path: "/home",
-        element: <HomePage />,
+        element: <ProtectedRoute element={<HomePage />} />,
       },
     ],
   },

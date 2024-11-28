@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "react-router-dom";
 
 export const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ export const HomePage = () => {
         <Button disabled variant="teritary">
           Territary
         </Button>
+        <Link to="/sign-in">Sign in</Link>
       </div>
       <div className="mt-4">
         <Input placeholder="email address" />
