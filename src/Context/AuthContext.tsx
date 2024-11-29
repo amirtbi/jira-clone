@@ -4,11 +4,11 @@ const AuthContext = createContext<{ isAuthenticated: boolean } | null>(null);
 export const AuthProvider = ({ children }: { children: JSX.Element }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsAuthenticated(true);
-    }, 4000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setIsAuthenticated(true);
+  //   }, 4000);
+  // }, []);
 
   const contextValue = {
     isAuthenticated,

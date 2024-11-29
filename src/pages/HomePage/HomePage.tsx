@@ -15,6 +15,7 @@ export const HomePage = () => {
           Territary
         </Button>
         <Link to="/sign-in">Sign in</Link>
+        <Link to="/sign-up">Sign UP</Link>
       </div>
       <div className="mt-4">
         <Input placeholder="email address" />

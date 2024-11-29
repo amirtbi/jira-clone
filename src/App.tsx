@@ -6,9 +6,11 @@ import { AuthProvider } from "./Context/AuthContext";
 function App() {
   return (
     <>
-      <AuthProvider>
-        <RouterProvider router={routes} />
-      </AuthProvider>
+      <div className="min-h-screen">
+        <AuthProvider>
+          <RouterProvider router={routes} />
+        </AuthProvider>
+      </div>
     </>
   );
 }

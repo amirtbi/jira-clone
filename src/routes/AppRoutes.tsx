@@ -1,8 +1,10 @@
 import { LayoutWrapper } from "@/layouts/LayoutWrapper";
-import { HomePage } from "@/pages/HomePage";
-import { SignInPage } from "@/pages/SignInPage";
+import { HomePage } from "@/pages/HomePage/HomePage";
+import { SignInPage } from "@/pages/SignInPage/SignInPage";
 import { createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { SignUpPage } from "@/pages/SignUpPage/SignUpPage";
+import { ErrorPage } from "@/pages/ErrorPage";
 
 export const routes = createBrowserRouter([
   {
@@ -13,6 +15,10 @@ export const routes = createBrowserRouter([
         element: <SignInPage />,
       },
       {
+        path: "/sign-up",
+        element: <SignUpPage />,
+      },
+      {
         path: "/",
         element: <ProtectedRoute element={<HomePage />} />,
       },
@@ -21,5 +27,9 @@ export const routes = createBrowserRouter([
         element: <ProtectedRoute element={<HomePage />} />,
       },
     ],
+  },
+  {
+    element: <ErrorPage />,
+    path: "*",
   },
 ]);
