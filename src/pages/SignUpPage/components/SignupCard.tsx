@@ -24,16 +24,13 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-
-const formSchema = z.object({
-  name: z.string().min(1, "Required"),
-  email: z.string().trim().email(),
-  password: z.string().min(8, "Min of 8 chars is required"),
-});
+import { SignUpSchema } from "../SignUpSchema";
+import { useAuthentication } from "@/hooks/useLogin";
 
 export const SignUpCard = () => {
+  const { registerUser } = useAuthentication();
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(SignUpSchema),
     defaultValues: {
       name: "",
       email: "",
@@ -41,8 +38,9 @@ export const SignUpCard = () => {
     },
   });
 
-  const hanldeSubmit = (values: z.infer<typeof formSchema>) => {
+  const hanldeSubmit = (values: z.infer<typeof SignUpSchema>) => {
     console.log("values", values);
+    registerUser(values);
   };
   return (
     <>
@@ -91,8 +89,7 @@ export const SignUpCard = () => {
                       <FormControl>
                         <Input
                           {...field}
-                          placeholder="Enter your address"
-                          disabled={false}
+                          placeholder="Enter your email address"
                         />
                       </FormControl>
                       <FormMessage />
@@ -107,7 +104,11 @@ export const SignUpCard = () => {
                   <>
                     <FormItem>
                       <FormControl>
-                        <Input {...field} placeholder="Enter password" />
+                        <Input
+                          {...field}
+                          placeholder="Enter password"
+                          type="password"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

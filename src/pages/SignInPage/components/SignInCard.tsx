@@ -16,23 +16,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Link } from "react-router-dom";
-
-const formSchema = z.object({
-  email: z.string().trim().email(),
-  password: z.string().min(1, "Password is required"),
-});
+import { SignInSchema } from "../SignInSchema";
+import { useAuthentication } from "@/hooks/useLogin";
 
 export const SignInCard = () => {
+  const { loginUser } = useAuthentication();
   const form = useForm({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(SignInSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const handleSubmit = (value: z.infer<typeof formSchema>) => {
+  const handleSubmit = (value: z.infer<typeof SignInSchema>) => {
     console.log(value);
+    loginUser({ data: value, param: { userId: "123" } });
   };
   return (
     <>
